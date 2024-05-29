@@ -16,6 +16,7 @@ public class CarPathFollower : MonoBehaviour
 
     private List<Transform> anchorPoints; // Puntos de anclaje del recorrido seleccionado
     private int currentAnchorIndex;
+    public bool isMoving = true;
 
     void Start()
     {
@@ -24,7 +25,7 @@ public class CarPathFollower : MonoBehaviour
 
     void Update()
     {
-        if (anchorPoints == null || anchorPoints.Count == 0) return; // Si no hay puntos, no hacer nada
+        if (!isMoving || anchorPoints == null || anchorPoints.Count == 0) return; // Si el coche no debe moverse o no hay puntos, no hacer nada
 
         // Obtener el punto de destino actual
         Transform targetPoint = anchorPoints[currentAnchorIndex];
@@ -52,6 +53,24 @@ public class CarPathFollower : MonoBehaviour
         }
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Detector") && isMoving)
+        {
+            Debug.Log("Detector activado, deteniendo el coche.");
+            isMoving = false;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Detector") && !isMoving)
+        {
+            Debug.Log("Saliendo del detector, reanudando el movimiento del coche.");
+            isMoving = true;
+        }
+    }
+
     void SelectRandomRoute()
     {
         int randomRouteIndex = Random.Range(0, routes.Count);
@@ -66,5 +85,6 @@ public class CarPathFollower : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = targetRotation;
         }
+        isMoving = true; // Asegurar que el coche se mueva al seleccionar una nueva ruta
     }
 }
