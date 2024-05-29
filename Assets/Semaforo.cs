@@ -14,6 +14,11 @@ public class Semaforo : MonoBehaviour
     private GameObject colliderLeft;
     private GameObject colliderRight;
 
+    //Hay que asignar el coche desde el editor de Unity, creo que estó hará que solo pueda haber un coche
+    //(De esta manera), pero se podría hacer una lista de coches o que al colisionar se pase la info del coche
+    //que ha colisionado si queremos poner mas de uno
+    public CarPathFollower coche;
+
     private float timer;
     public bool isGreenLight;
 
@@ -60,6 +65,9 @@ public class Semaforo : MonoBehaviour
             colliderDown.SetActive(false);
             colliderLeft.SetActive(true);
             colliderRight.SetActive(true);
+
+            //Se necesita esta linea aqui para actualizar el estado de movimiento
+            coche.isMoving = true;
         }
         else
         {

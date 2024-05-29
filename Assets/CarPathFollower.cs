@@ -18,6 +18,8 @@ public class CarPathFollower : MonoBehaviour
     private int currentAnchorIndex;
     public bool isMoving = true;
 
+    public Semaforo semaforo;
+
     void Start()
     {
         SelectRandomRoute();
@@ -55,20 +57,36 @@ public class CarPathFollower : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Detector") && isMoving)
+        if (other.CompareTag("Detector"))
         {
-            Debug.Log("Detector activado, deteniendo el coche.");
-            isMoving = false;
+            //El OnTriggerStay no te deja actualizar cuando la traffic light es roja o verde
+            //Si cuando ha entrado el coche era roja, la dejará en rojo todo el rato
+            //Ahora va CLINICO pero creo que esta manera en especifico solo servirá con UN solo coche
+            if (CheckTrafficLight())
+            {
+                Debug.Log("Semaforo en verde, el coche pasa");
+                isMoving = true;
+            }
+            else
+            {
+                Debug.Log("Semaforo en rojo, el coche se detiene");
+                isMoving = false;
+            }
+
+            //if (other.CompareTag("Detector") && isMoving)
+            //{
+            //    Debug.Log("Detector activado, deteniendo el coche.");
+            //    isMoving = false;
+            //}
         }
     }
-
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Detector") && !isMoving)
-        {
-            Debug.Log("Saliendo del detector, reanudando el movimiento del coche.");
-            isMoving = true;
-        }
+        //if (other.CompareTag("Detector") && !isMoving)
+        //{
+        //    Debug.Log("Detector activado, reanudando el movimiento del coche.");
+        //    isMoving = true;
+        //}
     }
 
     void SelectRandomRoute()
@@ -86,5 +104,10 @@ public class CarPathFollower : MonoBehaviour
             transform.rotation = targetRotation;
         }
         isMoving = true; // Asegurar que el coche se mueva al seleccionar una nueva ruta
+    }
+
+    bool CheckTrafficLight()
+    {
+        return semaforo.isGreenLight;
     }
 }

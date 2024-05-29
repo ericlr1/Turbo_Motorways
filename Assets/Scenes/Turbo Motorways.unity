@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -281,6 +281,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!21 &346987219
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'alfombraMaterial
+
+    24138'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 65ea5d098f6801941b87320426723fda, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &522901072
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +821,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1240298769}
+  - {fileID: 346987219}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1176,40 +1210,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1240298769
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'alfombraMaterial
-
-    28304'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 65ea5d098f6801941b87320426723fda, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1302340009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,6 +1807,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1992037156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 765578658123033413, guid: baaf65eda8bfee14ab854de342387501, type: 3}
+  m_PrefabInstance: {fileID: 6423750568342745516}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bff8b8c213add4dbe028f5bb0cf49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2059663933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1972,6 +1983,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5767406083226199459, guid: bd19abe7cff4a9c4699294fa0af88545, type: 3}
+      propertyPath: semaforo
+      value: 
+      objectReference: {fileID: 1992037156}
+    - target: {fileID: 5767406083226199459, guid: bd19abe7cff4a9c4699294fa0af88545, type: 3}
       propertyPath: routes.Array.data[0].anchorPoints.Array.data[0]
       value: 
       objectReference: {fileID: 2099985143}
@@ -2114,6 +2129,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5963147319760100248, guid: bd19abe7cff4a9c4699294fa0af88545, type: 3}
   m_PrefabInstance: {fileID: 534611678998247722}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &534611678998247726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5767406083226199459, guid: bd19abe7cff4a9c4699294fa0af88545, type: 3}
+  m_PrefabInstance: {fileID: 534611678998247722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d0fa99ea0689e4f9a8a7fe3213eb15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6423750568342745516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2122,6 +2148,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 735366213}
     m_Modifications:
+    - target: {fileID: 765578658123033413, guid: baaf65eda8bfee14ab854de342387501, type: 3}
+      propertyPath: coche
+      value: 
+      objectReference: {fileID: 534611678998247726}
     - target: {fileID: 3374409975680507986, guid: baaf65eda8bfee14ab854de342387501, type: 3}
       propertyPath: m_TagString
       value: Detector
