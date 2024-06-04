@@ -40,6 +40,8 @@ public class CarPathFollower : MonoBehaviour
 
         SelectRandomRoute();
 
+        gameObject.transform.position = anchorPoints[0].position;
+
     }
 
     void Update()
