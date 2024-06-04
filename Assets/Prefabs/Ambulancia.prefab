@@ -4937,7 +4937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 163125fb5228f114fa2a27f39cce558e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0013114
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 163125fb5228f114fa2a27f39cce558e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4945,7 +4945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 163125fb5228f114fa2a27f39cce558e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.29
+      value: 0.262
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 163125fb5228f114fa2a27f39cce558e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5133,7 +5133,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 73d86c5186c512344aa48fe9b3bb040a, type: 3}
   - {fileID: 8300000, guid: 73d86c5186c512344aa48fe9b3bb040a, type: 3}
   audioSource: {fileID: 5830572070138861610}
-  prefabs: []
+  carManager: {fileID: 0}
 --- !u!65 &5756798658363048970
 BoxCollider:
   m_ObjectHideFlags: 0
