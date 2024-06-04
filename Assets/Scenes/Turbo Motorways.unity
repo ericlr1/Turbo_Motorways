@@ -884,6 +884,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4275701436833079440, guid: baaf65eda8bfee14ab854de342387501, type: 3}
   m_PrefabInstance: {fileID: 6423750568342745516}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &817882152 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9124688817955353326, guid: bd19abe7cff4a9c4699294fa0af88545, type: 3}
+  m_PrefabInstance: {fileID: 534611678998247722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &865221475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,7 +1899,7 @@ PrefabInstance:
     - target: {fileID: 5767406083226199459, guid: bd19abe7cff4a9c4699294fa0af88545, type: 3}
       propertyPath: carBreakddownParticles
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 817882152}
     - target: {fileID: 5767406083226199459, guid: bd19abe7cff4a9c4699294fa0af88545, type: 3}
       propertyPath: routes.Array.data[0].anchorPoints.Array.size
       value: 9

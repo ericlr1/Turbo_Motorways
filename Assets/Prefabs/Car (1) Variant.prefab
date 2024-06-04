@@ -5037,7 +5037,7 @@ MonoBehaviour:
   speed: 0.02
   rotationSpeed: 15
   stopDistance: 0.00005
-  carBreakddownParticles: {fileID: 0}
+  carBreakddownParticles: {fileID: 9124688817955353326}
   isMoving: 1
   isBreak: 0
   semaforo: {fileID: 0}
