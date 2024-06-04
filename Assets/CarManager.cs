@@ -44,7 +44,7 @@ public class CarManager : MonoBehaviour
 
     private IEnumerator SpawnCarsWithDelay()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             SpawnCar();
             yield return new WaitForSeconds(1.0f); // Espera 1 segundo

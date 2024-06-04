@@ -93,6 +93,8 @@ public class CarPathFollower : MonoBehaviour
     {
         if (other.CompareTag("Detector"))
         {
+            semaforo.coches.Add(this);
+
             //El OnTriggerStay no te deja actualizar cuando la traffic light es roja o verde
             //Si cuando ha entrado el coche era roja, la dejará en rojo todo el rato
             //Ahora va CLINICO pero creo que esta manera en especifico solo servirá con UN solo coche
@@ -113,12 +115,31 @@ public class CarPathFollower : MonoBehaviour
             //    isMoving = false;
             //}
         }
+
+        if (other.CompareTag("Car"))
+        {
+            if(other.GetComponent<CarPathFollower>().isMoving == false && other.GetComponent<CarPathFollower>().isBreak == true)
+            {
+                isMoving = false;
+            }
+            else if (other.GetComponent<CarPathFollower>().isMoving == true && other.GetComponent<CarPathFollower>().isBreak == false)
+            {
+                isMoving = true;
+            }
+
+        }
+
     }
     void OnTriggerExit(Collider other)
     {
         //if (other.CompareTag("Detector") && !isMoving)
         //{
         //    Debug.Log("Detector activado, reanudando el movimiento del coche.");
+        //    isMoving = true;
+        //}
+
+        //if (other.CompareTag("Car"))
+        //{
         //    isMoving = true;
         //}
     }

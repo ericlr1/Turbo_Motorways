@@ -7,6 +7,7 @@ TagManager:
   - Semaforo
   - Detector
   - Car
+  - Parachoques
   layers:
   - Default
   - TransparentFX
