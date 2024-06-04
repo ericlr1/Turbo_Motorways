@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 4a3acf1efcca31c49a2db2c843608e0a
+  - enabled: 1
     path: Assets/Scenes/Turbo Motorways.unity
     guid: 86112ea55de08594abbafa8a8d365258
   m_configObjects: {}
