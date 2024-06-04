@@ -66,8 +66,12 @@ public class Semaforo : MonoBehaviour
             colliderLeft.SetActive(true);
             colliderRight.SetActive(true);
 
-            //Se necesita esta linea aqui para actualizar el estado de movimiento
-            coche.isMoving = true;
+            if(!coche.isMoving)
+            {
+                //Se necesita esta linea aqui para actualizar el estado de movimiento
+                coche.isMoving = true;
+            }
+            
         }
         else
         {

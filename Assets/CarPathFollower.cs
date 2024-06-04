@@ -13,6 +13,7 @@ public class CarPathFollower : MonoBehaviour
     public float speed; // Velocidad del coche
     public float rotationSpeed; // Velocidad de rotación del coche
     public float stopDistance; // Distancia mínima para considerar que el coche ha llegado a un punto
+    public ParticleSystem carBreakddownParticles;
 
     private List<Transform> anchorPoints; // Puntos de anclaje del recorrido seleccionado
     private int currentAnchorIndex;
@@ -52,6 +53,11 @@ public class CarPathFollower : MonoBehaviour
                 // Si se llega al final de la lista de puntos, seleccionar una nueva ruta aleatoria y teletransportar al primer punto
                 SelectRandomRoute();
             }
+        }
+
+        if (Random.value < 0.001f) // La probablidad de que el coche se rompa
+        {
+            BreakDown();
         }
     }
 
@@ -109,5 +115,27 @@ public class CarPathFollower : MonoBehaviour
     bool CheckTrafficLight()
     {
         return semaforo.isGreenLight;
+    }
+
+    private void OnMouseDown()
+    {
+        if (!isMoving) 
+        { 
+            FixCar(); 
+        }
+    }
+
+    //Funcion que hace que el coche se pare
+    void BreakDown()
+    {
+        isMoving = false;
+        carBreakddownParticles.Play();
+    }
+
+    //Funcion para arreglar el coche
+    void FixCar()
+    {
+        isMoving = true;
+        carBreakddownParticles.Stop();
     }
 }
