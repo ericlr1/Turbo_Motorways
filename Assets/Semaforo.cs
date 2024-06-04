@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Semaforo : MonoBehaviour
@@ -66,7 +67,7 @@ public class Semaforo : MonoBehaviour
             colliderLeft.SetActive(true);
             colliderRight.SetActive(true);
 
-            if(!coche.isMoving)
+            if(!coche.isMoving && !coche.isBreak)
             {
                 //Se necesita esta linea aqui para actualizar el estado de movimiento
                 coche.isMoving = true;

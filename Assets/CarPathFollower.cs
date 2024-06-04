@@ -18,6 +18,7 @@ public class CarPathFollower : MonoBehaviour
     private List<Transform> anchorPoints; // Puntos de anclaje del recorrido seleccionado
     private int currentAnchorIndex;
     public bool isMoving = true;
+    public bool isBreak = false;
 
     public Semaforo semaforo;
 
@@ -68,7 +69,7 @@ public class CarPathFollower : MonoBehaviour
             //El OnTriggerStay no te deja actualizar cuando la traffic light es roja o verde
             //Si cuando ha entrado el coche era roja, la dejará en rojo todo el rato
             //Ahora va CLINICO pero creo que esta manera en especifico solo servirá con UN solo coche
-            if (CheckTrafficLight())
+            if (semaforo.isGreenLight)
             {
                 Debug.Log("Semaforo en verde, el coche pasa");
                 isMoving = true;
@@ -112,14 +113,9 @@ public class CarPathFollower : MonoBehaviour
         isMoving = true; // Asegurar que el coche se mueva al seleccionar una nueva ruta
     }
 
-    bool CheckTrafficLight()
-    {
-        return semaforo.isGreenLight;
-    }
-
     private void OnMouseDown()
     {
-        if (!isMoving) 
+        if (!isMoving && isBreak) 
         { 
             FixCar(); 
         }
@@ -130,6 +126,7 @@ public class CarPathFollower : MonoBehaviour
     {
         Debug.Log("Car Break Down! Please fix it!");
         isMoving = false;
+        isBreak = true;
         carBreakddownParticles.Play();
     }
 
@@ -138,6 +135,7 @@ public class CarPathFollower : MonoBehaviour
     {
         Debug.Log("Car Fixed! Thank you!");
         isMoving = true;
+        isBreak = false;
         carBreakddownParticles.Stop();
     }
 }
