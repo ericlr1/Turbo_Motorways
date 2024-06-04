@@ -128,6 +128,7 @@ public class CarPathFollower : MonoBehaviour
     //Funcion que hace que el coche se pare
     void BreakDown()
     {
+        Debug.Log("Car Break Down! Please fix it!");
         isMoving = false;
         carBreakddownParticles.Play();
     }
@@ -135,6 +136,7 @@ public class CarPathFollower : MonoBehaviour
     //Funcion para arreglar el coche
     void FixCar()
     {
+        Debug.Log("Car Fixed! Thank you!");
         isMoving = true;
         carBreakddownParticles.Stop();
     }
