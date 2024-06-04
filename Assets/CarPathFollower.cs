@@ -21,9 +21,12 @@ public class CarPathFollower : MonoBehaviour
     public bool isBreak = false;
 
     private float elapsedTime = 0f;
-    private float checkInterval = 2f;
+    private float checkInterval = 5f;
 
     public Semaforo semaforo;
+
+    public List<AudioClip> audios;
+    public AudioSource audioSource;
 
     void Start()
     {
@@ -69,6 +72,7 @@ public class CarPathFollower : MonoBehaviour
             if (Random.value < 0.15f) // La probabilidad de que el coche se rompa (15%)
             {
                 BreakDown();
+                audioSource.PlayOneShot(audios[GenerateRandom01()]);
             }
         }
     }
@@ -148,5 +152,21 @@ public class CarPathFollower : MonoBehaviour
         isMoving = true;
         isBreak = false;
         carBreakddownParticles.Stop();
+    }
+    public int GenerateRandom01()
+    {
+        // Generate a random number between the minimum and maximum (exclusive)
+        float randomNumber = Random.value;
+
+
+        if (randomNumber < 0.5)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+
     }
 }
