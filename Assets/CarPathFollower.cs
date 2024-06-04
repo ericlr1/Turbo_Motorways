@@ -20,6 +20,9 @@ public class CarPathFollower : MonoBehaviour
     public bool isMoving = true;
     public bool isBreak = false;
 
+    private float elapsedTime = 0f;
+    private float checkInterval = 2f;
+
     public Semaforo semaforo;
 
     void Start()
@@ -56,9 +59,17 @@ public class CarPathFollower : MonoBehaviour
             }
         }
 
-        if (Random.value < 0.001f) // La probablidad de que el coche se rompa
+        // Actualizar el tiempo transcurrido
+        elapsedTime += Time.deltaTime;
+
+        // Solo verificar la posibilidad de avería cada X segundos
+        if (elapsedTime >= checkInterval)
         {
-            BreakDown();
+            elapsedTime = 0f; // Reiniciar el temporizador
+            if (Random.value < 0.15f) // La probabilidad de que el coche se rompa (15%)
+            {
+                BreakDown();
+            }
         }
     }
 
