@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 [System.Serializable]
@@ -28,9 +29,17 @@ public class CarPathFollower : MonoBehaviour
     public List<AudioClip> audios;
     public AudioSource audioSource;
 
+    public CarManager carManager;
+
     void Start()
     {
+        semaforo = GameObject.Find("Traffic Light Variant").GetComponent<Semaforo>();
+        carManager = GameObject.Find("Car Spawner Manager").GetComponent<CarManager>();
+
+        FindAndAddRoutes();
+
         SelectRandomRoute();
+
     }
 
     void Update()
@@ -57,8 +66,11 @@ public class CarPathFollower : MonoBehaviour
             currentAnchorIndex++;
             if (currentAnchorIndex >= anchorPoints.Count)
             {
+                //Si llega al final destruir el GameObject
+                Destroy(gameObject);
+
                 // Si se llega al final de la lista de puntos, seleccionar una nueva ruta aleatoria y teletransportar al primer punto
-                SelectRandomRoute();
+                //SelectRandomRoute();
             }
         }
 
@@ -125,6 +137,10 @@ public class CarPathFollower : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = targetRotation;
         }
+        else
+        {
+            Debug.Log("No hay rutas asignadas al GameObject: " + gameObject.name);
+        }
         isMoving = true; // Asegurar que el coche se mueva al seleccionar una nueva ruta
     }
 
@@ -134,6 +150,12 @@ public class CarPathFollower : MonoBehaviour
         { 
             FixCar(); 
         }
+    }
+
+    private void OnDestroy()
+    {
+        carManager.SpawnCar();
+        carManager.carAmount--;
     }
 
     //Funcion que hace que el coche se pare
@@ -169,4 +191,46 @@ public class CarPathFollower : MonoBehaviour
         }
 
     }
+    private void FindAndAddRoutes()
+    {
+        // Buscar el objeto padre que contiene todas las rutas
+        GameObject routesParent = GameObject.Find("Alfombra");
+        if (routesParent != null)
+        {
+            // Encontrar todas las rutas como hijos del objeto padre
+            for (int i = 0; ; i++)
+            {
+                GameObject routeObj = GameObject.Find("Ruta " + i);
+                if (routeObj == null)
+                {
+                    // No se encontró la ruta, asumir que ya no hay más rutas
+                    break;
+                }
+
+                // Crear una nueva ruta y buscar todos los 'Cubes' que son hijos de la ruta
+                Route newRoute = new Route();
+                newRoute.anchorPoints = new List<Transform>();
+
+                foreach (Transform child in routeObj.transform)
+                {
+                    // Asumir que todos los hijos son puntos de anclaje
+                    if (child.name.StartsWith("Cube"))
+                    {
+                        newRoute.anchorPoints.Add(child);
+                    }
+                }
+
+                // Añadir la nueva ruta a la lista de rutas si tiene puntos de anclaje
+                if (newRoute.anchorPoints.Count > 0)
+                {
+                    routes.Add(newRoute);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("No se encontró el objeto 'Alfombra'. Asegúrate de que el nombre esté escrito correctamente y de que exista en la jerarquía.");
+        }
+    }
+
 }
